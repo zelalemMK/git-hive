@@ -1,12 +1,25 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"os/exec"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
+	//Might need to have the CLI interface in its own function.
+	// cmd := os.Args[1:]
+
+	s, sep := "", ""
+	for _, args := range os.Args[1:] {
+		s += sep + args
+		sep = " "
+	}
+	fmt.Println(s)
+
+	//HTTP interface
 	app := fiber.New()
 
 	app.Get("/", func(c *fiber.Ctx) error {
